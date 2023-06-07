@@ -1,4 +1,4 @@
-package br.com.compassuol.sp.challenge.ecommerce.models;
+package br.com.compassuol.sp.challenge.ecommerce.entitys;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
