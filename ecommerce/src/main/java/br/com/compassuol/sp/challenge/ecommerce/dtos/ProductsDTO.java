@@ -1,6 +1,5 @@
 package br.com.compassuol.sp.challenge.ecommerce.dtos;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import org.antlr.v4.runtime.misc.NotNull;
 

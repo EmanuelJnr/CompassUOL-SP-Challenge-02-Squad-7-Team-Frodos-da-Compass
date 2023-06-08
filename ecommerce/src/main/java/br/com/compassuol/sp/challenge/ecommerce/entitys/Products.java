@@ -1,20 +1,20 @@
 package br.com.compassuol.sp.challenge.ecommerce.entitys;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "products")
-public class ProductsModel {
-    @Column(name = "productId")
+public class Products implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int productId;
-    @Column(name = "name")
+    @Column(nullable = false, length = 30)
     private String name;
-    @Column(name = "price")
+    @Column(nullable = false)
     private double price;
-    @Column(name = "description")
+    @Column(nullable = false, length = 255)
     private String description;
 
     public int getProductId() {
