@@ -1,41 +1,43 @@
 package br.com.compassuol.sp.challenge.ecommerce.controllers;
 
-import br.com.compassuol.sp.challenge.ecommerce.entitys.OrderModel;
+import br.com.compassuol.sp.challenge.ecommerce.entities.Order;
 import br.com.compassuol.sp.challenge.ecommerce.services.OrderService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@CrossOrigin(origins = "*", maxAge = 3600)
+@RequestMapping("/v1/orders")
 public class OrderController {
 
-    @Autowired
-    private OrderService os;
+    final OrderService orderService;
 
-    @GetMapping("/v1/orders")
-    public ResponseEntity<List<OrderModel>> getAllOrders(){
-        List<OrderModel> om = os.getAllOrders();
-        return  new ResponseEntity<>(om, HttpStatus.OK);
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
     }
 
-    @GetMapping("v1/orders/customer/{customerId}")
-    public ResponseEntity<OrderModel> getOrderById(@PathVariable Long customerId){
-        OrderModel om = os.getOrderById(customerId);
-        if(om != null){
-            return new ResponseEntity<>(om,HttpStatus.OK);
-        }else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @GetMapping
+    public ResponseEntity<List<Order>> getAllOrders(){
+        return ResponseEntity.status(HttpStatus.OK).body(orderService.getAllOrders());
+    }
+
+    @GetMapping("/customers/{customerId}")
+    public ResponseEntity<Object> getOrderCustomerById(@PathVariable(value = "customerId") Integer customerId){
+        Optional<Order> om = orderService.getOrderCustomerById(customerId);
+        if (!om.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order not found!");
         }
+        return ResponseEntity.status(HttpStatus.OK).body(om.get());
     }
 
-    @PostMapping("/v1/orders")
-    public ResponseEntity<OrderModel> createOrder(@RequestBody OrderModel om){
-        OrderModel createOrder = os.createOrder(om);
+    @PostMapping
+    public ResponseEntity<Order> createOrder(@RequestBody Order order){
+        orderService.createOrder(order);
+        Order createOrder = orderService.createOrder(order);
         return  new ResponseEntity<>(createOrder,HttpStatus.CREATED);
     }
-
 }

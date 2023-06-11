@@ -1,4 +1,4 @@
-package br.com.compassuol.sp.challenge.ecommerce.entitys;
+package br.com.compassuol.sp.challenge.ecommerce.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -14,8 +14,8 @@ import java.util.Objects;
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long customerId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer customerId;
 
     @Column(nullable = false)
     @NotEmpty
@@ -47,11 +47,11 @@ public class Customer {
         this.active = active;
     }
 
-    public long getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(long customerId) {
+    public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 
