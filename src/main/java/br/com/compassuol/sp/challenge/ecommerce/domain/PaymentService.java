@@ -1,4 +1,4 @@
-package br.com.compassuol.sp.challenge.ecommerce.services;
+package br.com.compassuol.sp.challenge.ecommerce.domain;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

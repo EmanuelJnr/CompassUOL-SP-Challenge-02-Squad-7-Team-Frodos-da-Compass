@@ -3,21 +3,28 @@ package br.com.compassuol.sp.challenge.ecommerce.dtos;
 import br.com.compassuol.sp.challenge.ecommerce.entities.Customer;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.br.CPF;
 
 public class CustomerRequestDTO {
 
+    @Column(nullable = false)
+    @NotEmpty
     @Size(min = 3, message = "Name must be at least 3 characters")
     private String name;
 
+
+    @Column(unique = true, nullable = false)
+    @NotEmpty
     @CPF(message = "Invalid CPF. Try again.")
-    @Column(unique = true)
     private String cpf;
 
+
+    @Column(unique = true, nullable = false)
+    @NotEmpty
     @Email(message = "Invalid Email. Try again.")
-    @Column(unique = true)
     private String email;
 
     @NotNull
@@ -26,7 +33,7 @@ public class CustomerRequestDTO {
     public CustomerRequestDTO() {
     }
 
-    public CustomerRequestDTO(String name, String cpf, String email, @NotNull boolean active) {
+    public CustomerRequestDTO(String name, String cpf, String email, boolean active) {
         this.name = name;
         this.cpf = cpf;
         this.email = email;

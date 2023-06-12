@@ -1,4 +1,4 @@
-package br.com.compassuol.sp.challenge.ecommerce.services;
+package br.com.compassuol.sp.challenge.ecommerce.domain;
 
 import br.com.compassuol.sp.challenge.ecommerce.entities.Product;
 import br.com.compassuol.sp.challenge.ecommerce.repositories.ProductRepository;

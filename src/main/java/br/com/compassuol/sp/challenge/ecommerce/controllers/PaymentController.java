@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.compassuol.sp.challenge.ecommerce.entities.Payment;
-import br.com.compassuol.sp.challenge.ecommerce.services.PaymentService;
+import br.com.compassuol.sp.challenge.ecommerce.domain.PaymentService;
 
 @RestController
 @RequestMapping("/v1/payments")

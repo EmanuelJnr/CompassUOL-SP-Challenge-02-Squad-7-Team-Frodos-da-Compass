@@ -12,6 +12,6 @@ public class CustomerNotFound extends Exception{
     private static final long serialVersionUID = 1L;
 
     public CustomerNotFound(long customerId) {
-        super(String.format("Id " + customerId + " does not exist in the database "));
+        super(String.format("Id " + customerId + " does not exist in the database."));
     }
 }
