@@ -1,19 +1,23 @@
 package br.com.compassuol.sp.challenge.ecommerce.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "products")
-public class Product {
-
+public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer productId;
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false)
+    @NotEmpty
+    @Size(min = 3, message = "Name must be at least 3 characters")
     private String name;
     @Column(nullable = false)
     private double price;
     @Column(nullable = false)
+    @NotEmpty
+    @Size(min = 3, message = "Name must be at least 3 characters")
     private String description;
 
     public Integer getProductId() {
@@ -39,5 +43,15 @@ public class Product {
     }
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

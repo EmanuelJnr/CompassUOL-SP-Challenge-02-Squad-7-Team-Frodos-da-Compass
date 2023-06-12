@@ -1,5 +1,8 @@
 package br.com.compassuol.sp.challenge.ecommerce.controllers;
 
+import br.com.compassuol.sp.challenge.ecommerce.entities.Order;
+import br.com.compassuol.sp.challenge.ecommerce.enums.Status;
+import br.com.compassuol.sp.challenge.ecommerce.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,8 +20,14 @@ public class PaymentController {
     @Autowired
     private PaymentService paymentService;
 
+    @Autowired
+    private OrderService orderService;
+
     @PostMapping
     public ResponseEntity<Payment> createPayment(@RequestBody Payment payment) {
+        Order order = orderService.findById(payment.getOrderId()).get();
+        payment.setOrder(order);
+        payment.getOrder().setStatus(Status.CONFIRMED);
         Payment newPayment = paymentService.save(payment);
         return ResponseEntity.ok(newPayment);
     }

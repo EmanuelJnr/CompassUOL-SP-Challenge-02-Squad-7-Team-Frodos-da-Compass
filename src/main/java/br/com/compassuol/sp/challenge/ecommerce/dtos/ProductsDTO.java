@@ -3,7 +3,7 @@ package br.com.compassuol.sp.challenge.ecommerce.dtos;
 import jakarta.validation.constraints.NotBlank;
 import org.antlr.v4.runtime.misc.NotNull;
 
-public class ProductDTO {
+public class ProductsDTO {
 
     private @NotBlank String name;
     private @NotNull double price;

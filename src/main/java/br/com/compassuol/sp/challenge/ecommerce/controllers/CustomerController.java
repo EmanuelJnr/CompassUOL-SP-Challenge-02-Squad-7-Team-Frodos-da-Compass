@@ -59,21 +59,12 @@ public class CustomerController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Customer not found!");
         }
 
-        var customer = customerOptional.get();
-        customer.setName(customerRequestDTO.getName());
-        customer.setCpf(customerRequestDTO.getCpf());
-        customer.setEmail(customerRequestDTO.getEmail());
-        customer.setActive(customerRequestDTO.isActive());
-        return ResponseEntity.status(HttpStatus.OK).body(customerService.save(customer));
-
-        /*
         try {
             Customer changedCustomer = customerService.changeCustomer(customerId, customerRequestDTO.convertToEntity());
             return ResponseEntity.status(HttpStatus.OK)
                     .body(new CustomerResponseDTO().convertToDTO(changedCustomer));
         } catch (RepeatedData | CustomerNotFound e) {
             throw new RuntimeException(e);
-        }*/
+        }
     }
-
 }

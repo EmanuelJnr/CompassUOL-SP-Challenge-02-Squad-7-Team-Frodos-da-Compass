@@ -5,7 +5,9 @@ import java.util.Objects;
 import java.time.LocalDateTime;
 
 import br.com.compassuol.sp.challenge.ecommerce.enums.PaymentMethod;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Payment {
@@ -13,16 +15,23 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer paymentId;
-
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
+    @Column(nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
+    private String paymentDate;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private Order order;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime paymentDate;
+    private Integer orderId;
 
-    @OneToOne
-    @JoinColumn(name = "orderId")
-    private Order orderId;
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
 
     public Integer getPaymentId() {
         return paymentId;
@@ -40,26 +49,19 @@ public class Payment {
         this.paymentMethod = paymentMethod;
     }
 
-    public LocalDateTime getPaymentDate() {
+    public String getPaymentDate() {
         return paymentDate;
     }
 
-    public void setPaymentDate(LocalDateTime paymentDate) {
+    public void setPaymentDate(String paymentDate) {
         this.paymentDate = paymentDate;
     }
 
-    public Order getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Order orderId) {
-        this.orderId = orderId;
-    }
-
-    public Payment(Integer paymentId, PaymentMethod paymentMethod, LocalDateTime paymentDate, Order orderId) {
+    public Payment(Integer paymentId, PaymentMethod paymentMethod, String paymentDate, Order order, Integer orderId) {
         this.paymentId = paymentId;
         this.paymentMethod = paymentMethod;
         this.paymentDate = paymentDate;
+        this.order = order;
         this.orderId = orderId;
     }
 
@@ -90,4 +92,11 @@ public class Payment {
                 + ", orderId=" + orderId + "]";
     }
 
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 }
