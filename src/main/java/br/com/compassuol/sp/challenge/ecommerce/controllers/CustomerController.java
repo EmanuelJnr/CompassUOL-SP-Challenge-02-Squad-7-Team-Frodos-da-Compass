@@ -5,7 +5,7 @@ import br.com.compassuol.sp.challenge.ecommerce.dtos.CustomerResponseDTO;
 import br.com.compassuol.sp.challenge.ecommerce.entities.Customer;
 import br.com.compassuol.sp.challenge.ecommerce.exceptions.CustomerNotFound;
 import br.com.compassuol.sp.challenge.ecommerce.exceptions.CustomerRepeatedData;
-import br.com.compassuol.sp.challenge.ecommerce.services.CustomerService;
+import br.com.compassuol.sp.challenge.ecommerce.domain.CustomerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

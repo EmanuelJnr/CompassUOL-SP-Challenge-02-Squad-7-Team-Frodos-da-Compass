@@ -4,7 +4,6 @@ import br.com.compassuol.sp.challenge.ecommerce.entities.Customer;
 import br.com.compassuol.sp.challenge.ecommerce.exceptions.CustomerNotFound;
 import br.com.compassuol.sp.challenge.ecommerce.exceptions.CustomerRepeatedData;
 import br.com.compassuol.sp.challenge.ecommerce.repositories.CustomerRepository;
-import br.com.compassuol.sp.challenge.ecommerce.services.CustomerService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

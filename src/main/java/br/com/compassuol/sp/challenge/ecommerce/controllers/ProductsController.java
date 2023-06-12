@@ -2,7 +2,7 @@ package br.com.compassuol.sp.challenge.ecommerce.controllers;
 
 import br.com.compassuol.sp.challenge.ecommerce.dtos.ProductsDTO;
 import br.com.compassuol.sp.challenge.ecommerce.entities.Products;
-import br.com.compassuol.sp.challenge.ecommerce.services.ProductsService;
+import br.com.compassuol.sp.challenge.ecommerce.domain.ProductsService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;

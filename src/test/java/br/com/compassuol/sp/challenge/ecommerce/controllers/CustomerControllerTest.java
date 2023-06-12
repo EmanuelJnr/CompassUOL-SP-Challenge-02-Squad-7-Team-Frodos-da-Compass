@@ -1,6 +1,6 @@
 package br.com.compassuol.sp.challenge.ecommerce.controllers;
 
-import br.com.compassuol.sp.challenge.ecommerce.services.CustomerService;
+import br.com.compassuol.sp.challenge.ecommerce.domain.CustomerService;
 import br.com.compassuol.sp.challenge.ecommerce.entities.Customer;
 import br.com.compassuol.sp.challenge.ecommerce.exceptions.CustomerNotFound;
 import br.com.compassuol.sp.challenge.ecommerce.exceptions.CustomerRepeatedData;

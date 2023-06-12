@@ -1,4 +1,4 @@
-package br.com.compassuol.sp.challenge.ecommerce.services;
+package br.com.compassuol.sp.challenge.ecommerce.domain;
 
 import br.com.compassuol.sp.challenge.ecommerce.entities.Customer;
 import br.com.compassuol.sp.challenge.ecommerce.exceptions.CustomerNotFound;
