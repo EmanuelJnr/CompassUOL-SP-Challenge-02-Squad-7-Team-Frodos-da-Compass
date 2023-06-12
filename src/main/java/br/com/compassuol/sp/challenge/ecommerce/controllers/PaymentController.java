@@ -18,10 +18,10 @@ import br.com.compassuol.sp.challenge.ecommerce.services.PaymentService;
 public class PaymentController {
 
     @Autowired
-    private PaymentService paymentService;
+    PaymentService paymentService;
 
     @Autowired
-    private OrderService orderService;
+    OrderService orderService;
 
     @PostMapping
     public ResponseEntity<Payment> createPayment(@RequestBody Payment payment) {
