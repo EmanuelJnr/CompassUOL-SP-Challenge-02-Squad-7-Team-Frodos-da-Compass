@@ -1,11 +1,10 @@
-package br.com.compassuol.sp.challenge.ecommerce.services;
+package br.com.compassuol.sp.challenge.ecommerce.domain;
 
 
 import br.com.compassuol.sp.challenge.ecommerce.entities.Customer;
 import br.com.compassuol.sp.challenge.ecommerce.exceptions.CustomerNotFound;
-import br.com.compassuol.sp.challenge.ecommerce.exceptions.RepeatedData;
+import br.com.compassuol.sp.challenge.ecommerce.exceptions.CustomerRepeatedData;
 import br.com.compassuol.sp.challenge.ecommerce.repositories.CustomerRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,10 +22,6 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public List<Customer> findAllCustomer(){
-        return customerRepository.findAll();
-    }
-
     public Optional<Customer> findCustomer(Integer customerId) throws CustomerNotFound {
         if (!customerRepository.existsById(customerId)){
             throw new CustomerNotFound(customerId);
@@ -34,26 +29,24 @@ public class CustomerService {
 
         return customerRepository.findById(customerId);
     }
-    @Transactional
-    public Customer save(Customer customer) {
-        return customerRepository.save(customer);
-    }
 
-    public Customer createCustomer(Customer newCustomer) throws RepeatedData {
+    public Customer createCustomer(Customer newCustomer) throws CustomerRepeatedData {
 
         Optional<List<Customer>> findByCpf = customerRepository.findByCpf(newCustomer.getCpf());
         Optional<List<Customer>> findByEmail = customerRepository.findByEmail(newCustomer.getEmail());
 
         if (findByEmail.get().size() >= 1 ||
                     findByCpf.get().size() >= 1){
-                throw new RepeatedData();
+                throw new CustomerRepeatedData();
         }
 
         return customerRepository.save(newCustomer);
 
     }
 
-    public Customer changeCustomer(Integer customerId, Customer alterCustomer) throws RepeatedData, CustomerNotFound {
+    public Customer changeCustomer(Integer customerId, Customer alterCustomer) throws CustomerRepeatedData,
+            CustomerNotFound {
+
         Optional<Customer> customer = findCustomer(customerId);
 
         Optional<List<Customer>> findByCpf = customerRepository.findByCpf(alterCustomer.getCpf());
@@ -64,7 +57,7 @@ public class CustomerService {
 
         if (findByEmail.get().size() >= 1 ||
                 findByCpf.get().size() >= 1){
-            throw new RepeatedData();
+            throw new CustomerRepeatedData();
         }
 
         alterCustomer.setCustomerId(customerId);

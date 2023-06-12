@@ -1,3 +1,4 @@
+/*
 package br.com.compassuol.sp.challenge.ecommerce.configs;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,3 +24,5 @@ public class DateConfig {
         return new ObjectMapper().registerModule(module);
     }
 }
+
+ */

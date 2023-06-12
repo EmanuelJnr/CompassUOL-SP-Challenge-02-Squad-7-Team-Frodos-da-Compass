@@ -4,9 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code = HttpStatus.BAD_REQUEST, reason = "Cpf and email must be unique")
-public class RepeatedData extends Exception {
+public class CustomerRepeatedData extends Exception {
 
-    public RepeatedData() {
+    public CustomerRepeatedData() {
         super(String.format("Cpf and email must be unique"));
     }
 

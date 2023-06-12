@@ -1,7 +1,7 @@
 package br.com.compassuol.sp.challenge.ecommerce.controllers;
 
 import br.com.compassuol.sp.challenge.ecommerce.entities.Order;
-import br.com.compassuol.sp.challenge.ecommerce.services.OrderService;
+import br.com.compassuol.sp.challenge.ecommerce.domain.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
